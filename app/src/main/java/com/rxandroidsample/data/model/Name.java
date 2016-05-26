@@ -1,11 +1,13 @@
 package com.rxandroidsample.data.model;
 
+import com.google.gson.Gson;
+
 import io.realm.RealmObject;
 
 /**
  * Created by anhndt on 5/25/16.
  */
-public class Name{
+public class Name extends RealmObject {
     public String first;
     public String last;
 
@@ -29,6 +31,15 @@ public class Name{
 
     @Override
     public String toString() {
-        return first + " " + last;
+        return "{" +
+                "\"first\":\"" + first + "\"," +
+                "\"last\":\"" + last + "\"" +
+                "}";
+    }
+
+    public String printTrace() {
+        Gson gson = new Gson();
+        String result = gson.toJson(this);
+        return result;
     }
 }

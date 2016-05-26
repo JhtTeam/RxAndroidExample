@@ -2,7 +2,6 @@ package com.rxandroidsample.data.remote;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.rxandroidsample.data.model.Profile;
 import com.rxandroidsample.data.model.Ribot;
 
 import java.util.List;

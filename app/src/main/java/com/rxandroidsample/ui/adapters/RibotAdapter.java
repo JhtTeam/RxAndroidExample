@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rxandroidsample.R;
-import com.rxandroidsample.data.model.Profile;
 import com.rxandroidsample.data.model.Ribot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ import java.util.List;
 public class RibotAdapter extends RecyclerView.Adapter<RibotAdapter.RibotAdapterHolder> {
     private List<Ribot> mItems = new ArrayList<>();
 
-    public void add(Ribot profile) {
-        mItems.add(profile);
+    public void add(Ribot ribot) {
+        mItems.add(ribot);
         notifyItemInserted(mItems.size() - 1);
     }
     public void remove(int position) {
@@ -35,6 +35,11 @@ public class RibotAdapter extends RecyclerView.Adapter<RibotAdapter.RibotAdapter
         notifyDataSetChanged();
     }
 
+    public void replace(List<Ribot> items) {
+        mItems.clear();
+        mItems.addAll(items);
+        notifyDataSetChanged();
+    }
     @Override
     public RibotAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ribot_item, parent, false);
@@ -63,10 +68,10 @@ public class RibotAdapter extends RecyclerView.Adapter<RibotAdapter.RibotAdapter
             txtEmail = (TextView) itemView.findViewById(R.id.txtEmail);
         }
 
-        public void bindTo(Ribot profile) {
-            txtName.setText(profile.profile.getNameText());
-            txtEmail.setText(profile.profile.getEmail());
-
+        public void bindTo(Ribot ribot) {
+            txtName.setText(ribot.profile.getNameText());
+            txtEmail.setText(ribot.profile.getEmail());
+            Picasso.with(itemView.getContext()).load(ribot.profile.avatar).into(imgAvatar);
         }
     }
 }

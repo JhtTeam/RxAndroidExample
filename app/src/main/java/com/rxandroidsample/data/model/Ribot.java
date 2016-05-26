@@ -1,11 +1,9 @@
 package com.rxandroidsample.data.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import io.realm.RealmModel;
+import io.realm.RealmObject;
 
-import com.rxandroidsample.data.model.Profile;
-
-public class Ribot implements Comparable<Ribot> {
+public class Ribot extends RealmObject implements Comparable<Ribot>, RealmModel {
 
     public Profile profile;
 
@@ -59,5 +57,12 @@ public class Ribot implements Comparable<Ribot> {
 //            return new Ribot[size];
 //        }
 //    };
+
+    public String toString() {
+        if (profile != null) {
+            return profile.toString();
+        }
+        return "";
+    }
 }
 

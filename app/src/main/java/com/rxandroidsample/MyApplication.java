@@ -1,8 +1,8 @@
 package com.rxandroidsample;
 
 import android.app.Application;
-import android.os.Build;
 
+import com.rxandroidsample.util.RealmUtils;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -14,5 +14,7 @@ public class MyApplication extends Application{
         if (BuildConfig.DEBUG) {
             LeakCanary.install(this);
         }
+
+        RealmUtils.configRealm(getApplicationContext());
     }
 }
